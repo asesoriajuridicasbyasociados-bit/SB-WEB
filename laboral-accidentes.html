@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Indemnización por Accidente de Trabajo | SB y Asociados</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+<style>
+  .calc-section { padding: 90px 0 100px; background: var(--cream); }
+  .calc-wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: start; }
+  .calc-card { background: var(--navy); color: var(--cream); padding: 48px; border: 1px solid rgba(201,162,93,0.25); }
+  .calc-card h2 { font-size: 28px; font-weight: 600; margin-bottom: 8px; color: var(--cream); }
+  .calc-card .sub { font-size: 14px; color: rgba(247,241,230,0.55); margin-bottom: 36px; }
+  .form-group { margin-bottom: 24px; }
+  .form-group label { display: block; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: rgba(247,241,230,0.65); margin-bottom: 9px; }
+  .form-group .hint { font-size: 13px; color: rgba(247,241,230,0.45); margin-top: 7px; font-weight: 300; }
+  .form-group input, .form-group select { width: 100%; background: rgba(247,241,230,0.06); border: 1px solid rgba(247,241,230,0.2); color: var(--cream); padding: 14px 16px; font-family: 'Jost', sans-serif; font-size: 16px; border-radius: 2px; }
+  .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--gold); }
+  .radio-row { display: flex; gap: 16px; }
+  .radio-opt { flex: 1; border: 1px solid rgba(247,241,230,0.2); padding: 13px; text-align: center; font-size: 14px; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
+  .radio-opt.active { border-color: var(--gold); background: rgba(201,162,93,0.12); color: var(--gold-light); }
+  .calc-btn { width: 100%; background: var(--gold); color: var(--navy); border: none; padding: 17px; font-family: 'Jost', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.5px; border-radius: 2px; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
+  .calc-btn:hover { background: var(--gold-light); }
+
+  .result-card { background: var(--cream-warm); border: 1px solid rgba(10,22,40,0.12); padding: 40px; display: none; }
+  .result-card.show { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+  .result-label { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px; }
+  .result-amount { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1; }
+  .result-note { font-size: 14px; color: #6b6355; margin-bottom: 28px; }
+  .result-breakdown { border-top: 1px solid rgba(10,22,40,0.1); padding-top: 22px; }
+  .bd-row { display: flex; justify-content: space-between; font-size: 14px; padding: 8px 0; color: #4a4438; }
+  .bd-row span:last-child { font-weight: 500; color: var(--navy); }
+  .disclaimer-box { background: var(--cream); border-left: 3px solid var(--terracotta); padding: 22px 26px; margin-top: 28px; font-size: 14px; color: #5a5347; }
+  .disclaimer-box strong { color: var(--ink); }
+  .info-item { margin-bottom: 28px; }
+  .info-item h4 { font-size: 17px; font-weight: 500; color: var(--navy); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .info-item h4 .dot { width: 6px; height: 6px; background: var(--terracotta); border-radius: 50%; flex-shrink: 0; }
+  .info-item p { font-size: 14.5px; color: #5a5347; padding-left: 16px; }
+  @media (max-width: 900px) { .calc-wrap { grid-template-columns: 1fr; } }
+
+  .lesiones-section { padding: 100px 0; background: var(--cream-warm); }
+  .lesiones-head { max-width: 640px; margin-bottom: 56px; }
+  .lesiones-head h2 { font-size: clamp(30px, 3.8vw, 44px); font-weight: 600; color: var(--navy); line-height: 1.2; }
+  .lesiones-head p { font-size: 16px; color: #5a5347; margin-top: 16px; }
+  .lesiones-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(10,22,40,0.12); border: 1px solid rgba(10,22,40,0.12); }
+  .lesion-item { background: var(--cream-warm); padding: 22px 24px; font-size: 15px; color: var(--navy); display: flex; align-items: center; gap: 12px; transition: background 0.2s; }
+  .lesion-item:hover { background: var(--cream); color: var(--terracotta); }
+  .lesion-item svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--gold); }
+  @media (max-width: 760px) { .lesiones-grid { grid-template-columns: 1fr; } }
+
+  .cta-band { background: var(--cream-warm); padding: 100px 0; text-align: center; }
+  .cta-band h2 { font-size: clamp(28px, 3.6vw, 42px); font-weight: 600; color: var(--navy); max-width: 600px; margin: 0 auto 34px; }
+</style>
+</head>
+<body>
+
+<div class="urgency-band">
+  <div class="container">
+    <div class="urgency-left">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      URGENCIAS 24HS
+    </div>
+    <div class="urgency-links">
+      <a href="https://wa.me/5493764758540" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.3A10 10 0 1 0 12 2z" opacity="0.3"/></svg>
+        Urgencia Penal — Detenciones
+      </a>
+      <a href="contacto.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/></svg>
+        Otras urgencias
+      </a>
+    </div>
+  </div>
+</div>
+
+<nav class="mainnav">
+  <div class="container">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="10" x2="50" y2="75" stroke="#C9A25D" stroke-width="3"/>
+        <line x1="20" y1="22" x2="80" y2="22" stroke="#C9A25D" stroke-width="3"/>
+        <circle cx="50" cy="10" r="4.5" fill="#C9A25D"/>
+        <path d="M20 22 L10 45 Q20 55 30 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+        <path d="M80 22 L70 45 Q80 55 90 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+        <line x1="35" y1="80" x2="65" y2="80" stroke="#C9A25D" stroke-width="3"/>
+        <line x1="50" y1="75" x2="50" y2="80" stroke="#C9A25D" stroke-width="3"/>
+      </svg>
+      SB y Asociados
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li class="has-mega active">
+        <a href="#">Áreas de Práctica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="mega-menu">
+          <div class="container">
+            <a href="penal.html" class="mega-item">
+              <div class="mi-title">Penal <span class="badge">Urgencia 24hs</span></div>
+              <div class="mi-sub">Excarcelaciones, causas federales</div>
+            </a>
+            <a href="familia.html" class="mega-item">
+              <div class="mi-title">Derecho de Familia</div>
+              <div class="mi-sub">Alimentos, divorcios, sucesiones</div>
+            </a>
+            <a href="laboral.html" class="mega-item">
+              <div class="mi-title">Laboral</div>
+              <div class="mi-sub">Despidos, diferencias salariales</div>
+            </a>
+            <a href="laboral-accidentes.html" class="mega-item child">
+              <div class="mi-title">↳ Accidentes de trabajo</div>
+              <div class="mi-sub">Calculadora disponible</div>
+            </a>
+            <a href="civil.html" class="mega-item">
+              <div class="mi-title">Civil y Comercial</div>
+              <div class="mi-sub">Accidentes de tránsito, seguros</div>
+            </a>
+            <a href="previsional.html" class="mega-item">
+              <div class="mi-title">Previsional</div>
+              <div class="mi-sub">Jubilaciones, pensiones ANSES</div>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li><a href="novedades.html">Novedades</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.2 3.6a1 1 0 0 1-.27 1.05L7.6 9.9a12 12 0 0 0 6.5 6.5l1.57-1.56a1 1 0 0 1 1.05-.27l3.6 1.2a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C10.7 21 3 13.3 3 4V5z"/></svg>
+      3764758540
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> / <a href="laboral.html">Derecho Laboral</a> / Accidentes de trabajo</div>
+      <h1>Calculadora de <em>indemnización</em><br>por accidente de trabajo</h1>
+      <p>Estimá de forma orientativa cuánto podría corresponderte por tu accidente laboral o enfermedad profesional, según tu edad, ingreso y porcentaje de incapacidad.</p>
+    </div>
+  </div>
+</section>
+
+<section class="calc-section">
+  <div class="container">
+    <div class="calc-wrap">
+      <div class="calc-card">
+        <h2>Calculá tu indemnización</h2>
+        <div class="sub">Completá los datos de tu situación</div>
+        <div class="form-group">
+          <label>Edad al momento del accidente</label>
+          <input type="number" id="edad" placeholder="Ej: 34" min="16" max="99">
+        </div>
+        <div class="form-group">
+          <label>Porcentaje de incapacidad</label>
+          <input type="number" id="incapacidad" placeholder="Ej: 15" min="1" max="100" step="0.1">
+          <div class="hint">¿No lo sabés? Mirá la lista de lesiones frecuentes más abajo.</div>
+        </div>
+        <div class="form-group">
+          <label>Ingreso base mensual (IBM)</label>
+          <input type="number" id="ingreso" placeholder="Ej: 850000">
+          <div class="hint">Promedio de tus salarios del último año, actualizado por RIPTE.</div>
+        </div>
+        <div class="form-group">
+          <label>Lugar del accidente</label>
+          <div class="radio-row">
+            <div class="radio-opt active" data-val="trabajo" onclick="selectLugar(this)">En el trabajo</div>
+            <div class="radio-opt" data-val="itinere" onclick="selectLugar(this)">In itinere</div>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcular()">Calcular indemnización</button>
+      </div>
+
+      <div>
+        <div class="result-card" id="resultCard">
+          <div class="result-label">Estimación orientativa</div>
+          <div class="result-amount" id="resultAmount">$0</div>
+          <div class="result-note">Monto aproximado según fórmula de la Ley 24.557</div>
+          <div class="result-breakdown">
+            <div class="bd-row"><span>Fórmula base (53 × IBM × edad-factor)</span><span id="bdBase">—</span></div>
+            <div class="bd-row"><span>Porcentaje de incapacidad aplicado</span><span id="bdIncap">—</span></div>
+            <div class="bd-row"><span>Lugar del accidente</span><span id="bdLugar">—</span></div>
+          </div>
+          <div class="disclaimer-box">
+            <strong>Importante:</strong> este resultado es una estimación general y no reemplaza el cálculo definitivo, que depende del piso mínimo vigente (actualizado periódicamente por la SRT), la actualización RIPTE del ingreso, intereses y las circunstancias particulares de cada caso. Para un cálculo preciso, escribinos.
+          </div>
+        </div>
+
+        <div class="info-panel">
+          <div class="info-item"><h4><span class="dot"></span>Edad</h4><p>Edad que tenías a la fecha del accidente o de la primera manifestación de la enfermedad.</p></div>
+          <div class="info-item"><h4><span class="dot"></span>Ingreso base mensual</h4><p>Promedio mensual de los salarios devengados durante el año anterior al accidente, actualizado por RIPTE.</p></div>
+          <div class="info-item"><h4><span class="dot"></span>Porcentaje de incapacidad</h4><p>Lo determina la Comisión Médica o, en caso de reclamo judicial, la pericia médica del juicio.</p></div>
+          <div class="info-item"><h4><span class="dot"></span>Comisión Médica vs. Justicia</h4><p>Existe diferencia entre lo que se cobra ante la Superintendencia de Riesgos del Trabajo y lo que puede lograrse iniciando un reclamo judicial.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lesiones-section">
+  <div class="container">
+    <div class="lesiones-head">
+      <div class="section-label">Lesiones frecuentes</div>
+      <h2>¿No sabés tu porcentaje de incapacidad?</h2>
+      <p>Estas son algunas de las lesiones más habituales en accidentes laborales. Si la tuya no está en la lista, escribinos y te orientamos.</p>
+    </div>
+    <div class="lesiones-grid">
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Rotura de meniscos</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Rotura de ligamentos</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Fractura de radio y cúbito</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Fractura de tibia y peroné</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Hernia de disco lumbar</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Síndrome del túnel carpiano</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Lesión de manguito rotador</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Amputación de dedos</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Fractura de vértebras</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Cortes y cicatrices</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Lumbalgia / cervicalgia</div>
+      <div class="lesion-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>Otras lesiones — consultanos</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>¿Tuviste un accidente de trabajo?</h2>
+    <a href="contacto.html" class="btn-primary">Consulta sin compromiso</a>
+  </div>
+</section>
+
+<footer class="mainfoot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand-block">
+        <div class="nav-brand">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="10" x2="50" y2="75" stroke="#C9A25D" stroke-width="3"/>
+            <line x1="20" y1="22" x2="80" y2="22" stroke="#C9A25D" stroke-width="3"/>
+            <circle cx="50" cy="10" r="4.5" fill="#C9A25D"/>
+            <path d="M20 22 L10 45 Q20 55 30 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+            <path d="M80 22 L70 45 Q80 55 90 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+            <line x1="35" y1="80" x2="65" y2="80" stroke="#C9A25D" stroke-width="3"/>
+            <line x1="50" y1="75" x2="50" y2="80" stroke="#C9A25D" stroke-width="3"/>
+          </svg>
+          SB y Asociados
+        </div>
+        <p>Equipo de abogados del foro de Misiones, comprometido con vos en cada paso legal.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Áreas</h5>
+        <ul>
+          <li><a href="familia.html">Derecho de Familia</a></li>
+          <li><a href="laboral.html">Derecho Laboral</a></li>
+          <li><a href="civil.html">Civil y Comercial</a></li>
+          <li><a href="penal.html">Penal y Federal</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Estudio</h5>
+        <ul>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="tel:3764758540">3764758540</a></li>
+          <li><a href="#">Acevedo 3241, Posadas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="fb-brand">SB y Asociados</div>
+      <div class="fb-meta">Posadas, Misiones, Argentina — Sitio demo</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let lugarSeleccionado = 'trabajo';
+  function selectLugar(el) {
+    document.querySelectorAll('.radio-opt').forEach(o => o.classList.remove('active'));
+    el.classList.add('active');
+    lugarSeleccionado = el.dataset.val;
+  }
+  function calcular() {
+    const edad = parseFloat(document.getElementById('edad').value);
+    const incapacidad = parseFloat(document.getElementById('incapacidad').value);
+    const ingreso = parseFloat(document.getElementById('ingreso').value);
+    if (!edad || !incapacidad || !ingreso || edad <= 0 || incapacidad <= 0 || ingreso <= 0) {
+      alert('Completá edad, porcentaje de incapacidad e ingreso base para calcular.');
+      return;
+    }
+    const factorEdad = 65 / edad;
+    const base = 53 * ingreso * factorEdad;
+    const monto = base * (incapacidad / 100);
+    const fmt = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 });
+    document.getElementById('resultAmount').textContent = fmt.format(monto);
+    document.getElementById('bdBase').textContent = fmt.format(base);
+    document.getElementById('bdIncap').textContent = incapacidad + '%';
+    document.getElementById('bdLugar').textContent = lugarSeleccionado === 'trabajo' ? 'En el trabajo' : 'In itinere';
+    document.getElementById('resultCard').classList.add('show');
+    document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+
+</body>
+</html>

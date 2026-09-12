@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros | SB y Asociados</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+<style>
+  .story-section { padding: 120px 0; background: var(--cream); }
+  .story-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: start; }
+  .story-grid h2 { font-size: clamp(30px, 3.8vw, 44px); font-weight: 600; color: var(--navy); line-height: 1.2; }
+  .story-text p { font-size: 17px; color: #5a5347; margin-bottom: 22px; }
+  .story-text p:last-child { margin-bottom: 0; }
+  @media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .team-section { padding: 100px 0 130px; background: var(--cream-warm); }
+  .team-head { max-width: 600px; margin-bottom: 60px; }
+  .team-head h2 { font-size: clamp(30px, 3.8vw, 44px); font-weight: 600; color: var(--navy); }
+  .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+  .team-card { background: var(--cream); border: 1px solid rgba(10,22,40,0.1); padding: 48px; }
+  .team-card .initials { width: 64px; height: 64px; border-radius: 50%; background: var(--navy); color: var(--gold-light); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; margin-bottom: 26px; }
+  .team-card h3 { font-size: 27px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .team-card .role { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 22px; }
+  .team-card p { font-size: 15px; color: #5a5347; margin-bottom: 10px; }
+  .team-card .matricula { font-size: 13px; color: #8a8272; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(10,22,40,0.08); }
+  @media (max-width: 760px) { .team-grid { grid-template-columns: 1fr; } }
+
+  .values-band { background: var(--navy); color: var(--cream); padding: 110px 0; }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
+  .value-item .vnum { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--gold); letter-spacing: 2px; margin-bottom: 18px; display: block; }
+  .value-item h4 { font-size: 21px; font-weight: 500; margin-bottom: 12px; }
+  .value-item p { font-size: 15px; color: rgba(247,241,230,0.62); font-weight: 300; }
+  @media (max-width: 760px) { .values-grid { grid-template-columns: 1fr; gap: 40px; } }
+</style>
+</head>
+<body>
+
+<div class="urgency-band">
+  <div class="container">
+    <div class="urgency-left">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      URGENCIAS 24HS
+    </div>
+    <div class="urgency-links">
+      <a href="https://wa.me/5493764758540" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.3A10 10 0 1 0 12 2z" opacity="0.3"/></svg>
+        Urgencia Penal — Detenciones
+      </a>
+      <a href="contacto.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/></svg>
+        Otras urgencias
+      </a>
+    </div>
+  </div>
+</div>
+
+<nav class="mainnav">
+  <div class="container">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="10" x2="50" y2="75" stroke="#C9A25D" stroke-width="3"/>
+        <line x1="20" y1="22" x2="80" y2="22" stroke="#C9A25D" stroke-width="3"/>
+        <circle cx="50" cy="10" r="4.5" fill="#C9A25D"/>
+        <path d="M20 22 L10 45 Q20 55 30 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+        <path d="M80 22 L70 45 Q80 55 90 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+        <line x1="35" y1="80" x2="65" y2="80" stroke="#C9A25D" stroke-width="3"/>
+        <line x1="50" y1="75" x2="50" y2="80" stroke="#C9A25D" stroke-width="3"/>
+      </svg>
+      SB y Asociados
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li class="has-mega">
+        <a href="#">Áreas de Práctica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="mega-menu">
+          <div class="container">
+            <a href="penal.html" class="mega-item">
+              <div class="mi-title">Penal <span class="badge">Urgencia 24hs</span></div>
+              <div class="mi-sub">Excarcelaciones, causas federales</div>
+            </a>
+            <a href="familia.html" class="mega-item">
+              <div class="mi-title">Derecho de Familia</div>
+              <div class="mi-sub">Alimentos, divorcios, sucesiones</div>
+            </a>
+            <a href="laboral.html" class="mega-item">
+              <div class="mi-title">Laboral</div>
+              <div class="mi-sub">Despidos, diferencias salariales</div>
+            </a>
+            <a href="laboral-accidentes.html" class="mega-item child">
+              <div class="mi-title">↳ Accidentes de trabajo</div>
+              <div class="mi-sub">Calculadora disponible</div>
+            </a>
+            <a href="civil.html" class="mega-item">
+              <div class="mi-title">Civil y Comercial</div>
+              <div class="mi-sub">Accidentes de tránsito, seguros</div>
+            </a>
+            <a href="previsional.html" class="mega-item">
+              <div class="mi-title">Previsional</div>
+              <div class="mi-sub">Jubilaciones, pensiones ANSES</div>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li><a href="novedades.html">Novedades</a></li>
+      <li class="active"><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.2 3.6a1 1 0 0 1-.27 1.05L7.6 9.9a12 12 0 0 0 6.5 6.5l1.57-1.56a1 1 0 0 1 1.05-.27l3.6 1.2a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C10.7 21 3 13.3 3 4V5z"/></svg>
+      3764758540
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> / Nosotros</div>
+      <h1>Un equipo,<br>un mismo <em>compromiso</em></h1>
+      <p>Conocé al estudio y a las personas que van a acompañarte en tu situación legal.</p>
+    </div>
+  </div>
+</section>
+
+<section class="story-section">
+  <div class="container story-grid">
+    <h2>Más de una década brindando soluciones legales estratégicas.</h2>
+    <div class="story-text">
+      <p>Desde nuestra fundación en 2011, en Suárez Benítez y Asociados concebimos el ejercicio de la abogacía desde la solvencia técnica, la ética profesional y el compromiso con cada cliente. A lo largo de estos 15 años de trayectoria, nos hemos consolidado como una firma orientada a la protección efectiva de los derechos e intereses de personas y empresas.</p>
+      <p>Bajo la dirección de los abogados Santiago Benítez y Jonatan Suárez, el estudio se apoya en un cuerpo de abogados asociados y en la conformación de un equipo interdisciplinario según la naturaleza de cada causa.</p>
+      <p>Esta metodología de trabajo enfocada nos permite abordar cada asunto de manera global, rigurosa y humana. Gracias a esta estructura, brindamos una respuesta técnica sólida y especializada en las distintas ramas del derecho —laboral, civil, penal, familia y previsional—, asegurando una estrategia a la medida de cada necesidad, tanto en la prevención como en el ámbito litigioso.</p>
+    </div>
+  </div>
+</section>
+
+<section class="team-section">
+  <div class="container">
+    <div class="team-head">
+      <div class="section-label">Equipo</div>
+      <h2>Quiénes te van a acompañar</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="initials">SB</div>
+        <h3>Santiago Ezequiel Benítez</h3>
+        <div class="role">Abogado del foro local</div>
+        <p>Abogado del foro de Misiones, integrante del equipo de SB y Asociados.</p>
+        <div class="matricula">Matrícula N° 5826, Tomo XIX, Folio 226<br>Matrícula de Procurador N° 4662, Folio 126, Libro II<br>Matrícula Federal del Interior: Tomo 154, Folio 601</div>
+      </div>
+      <div class="team-card">
+        <div class="initials">JS</div>
+        <h3>Jonatan Sebastián Suárez</h3>
+        <div class="role">Abogado del foro local</div>
+        <p>Abogado del foro de Misiones, integrante del equipo de SB y Asociados.</p>
+        <div class="matricula">Matrícula N° 3647, Tomo XII, Folio 147<br>Matrícula de Procurador N° 2964, Folio 53, Libro II<br>Matrícula Federal del Interior: Tomo 58, Folio 204</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values-band">
+  <div class="container">
+    <div class="values-grid">
+      <div class="value-item">
+        <span class="vnum">01</span>
+        <h4>Comunicación clara</h4>
+        <p>Explicamos cada situación en criollo, sin tecnicismos innecesarios.</p>
+      </div>
+      <div class="value-item">
+        <span class="vnum">02</span>
+        <h4>Rigor técnico</h4>
+        <p>Cada escrito y estrategia se construye sobre normativa y jurisprudencia vigente.</p>
+      </div>
+      <div class="value-item">
+        <span class="vnum">03</span>
+        <h4>Trato humano</h4>
+        <p>Detrás de cada expediente hay una persona. Así te tratamos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="mainfoot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand-block">
+        <div class="nav-brand">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="10" x2="50" y2="75" stroke="#C9A25D" stroke-width="3"/>
+            <line x1="20" y1="22" x2="80" y2="22" stroke="#C9A25D" stroke-width="3"/>
+            <circle cx="50" cy="10" r="4.5" fill="#C9A25D"/>
+            <path d="M20 22 L10 45 Q20 55 30 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+            <path d="M80 22 L70 45 Q80 55 90 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+            <line x1="35" y1="80" x2="65" y2="80" stroke="#C9A25D" stroke-width="3"/>
+            <line x1="50" y1="75" x2="50" y2="80" stroke="#C9A25D" stroke-width="3"/>
+          </svg>
+          SB y Asociados
+        </div>
+        <p>Equipo de abogados del foro de Misiones, comprometido con vos en cada paso legal.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Áreas</h5>
+        <ul>
+          <li><a href="familia.html">Derecho de Familia</a></li>
+          <li><a href="laboral.html">Derecho Laboral</a></li>
+          <li><a href="civil.html">Civil y Comercial</a></li>
+          <li><a href="penal.html">Penal y Federal</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Estudio</h5>
+        <ul>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="tel:3764758540">3764758540</a></li>
+          <li><a href="#">Acevedo 3241, Posadas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="fb-brand">SB y Asociados</div>
+      <div class="fb-meta">Posadas, Misiones, Argentina — Sitio demo</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

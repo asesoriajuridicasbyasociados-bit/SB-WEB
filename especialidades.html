@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Especialidades | SB y Asociados</title>
+<meta name="description" content="Áreas y especialidades de SB y Asociados en Posadas, Misiones: familia, laboral, civil, penal y previsional.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+<style>
+  .spec-hero { background: var(--navy); color: var(--cream); padding: 110px 0 70px; position: relative; overflow: hidden; }
+  .spec-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 800px 500px at 90% 10%, rgba(201,162,93,0.14) 0%, transparent 60%);
+  }
+  .spec-hero-inner { position: relative; max-width: 700px; }
+  .spec-hero h1 { font-size: clamp(34px, 4.6vw, 52px); font-weight: 600; line-height: 1.15; margin-bottom: 20px; }
+  .spec-hero p { font-size: 16.5px; color: rgba(247,241,230,0.75); font-weight: 300; }
+
+  .spec-section { padding: 70px 0 160px; background: var(--cream-warm); }
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+  .spec-card {
+    background: var(--cream); border: 1px solid rgba(10,22,40,0.1); border-radius: 4px;
+    padding: 38px; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .spec-card:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(10,22,40,0.08); }
+  .spec-card.dark {
+    background: var(--navy); color: var(--cream); border-color: rgba(201,162,93,0.25);
+  }
+
+  .spec-icon {
+    width: 52px; height: 52px; border-radius: 50%; background: rgba(201,162,93,0.12);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 22px; flex-shrink: 0;
+  }
+  .spec-card.dark .spec-icon { background: rgba(201,162,93,0.18); }
+  .spec-icon svg { width: 24px; height: 24px; color: var(--terracotta); }
+  .spec-card.dark .spec-icon svg { color: var(--gold-light); }
+
+  .spec-card h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600;
+    color: var(--navy); margin-bottom: 14px; line-height: 1.25;
+  }
+  .spec-card.dark h3 { color: var(--cream); }
+
+  .spec-card p { font-size: 15px; color: #5a5347; line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
+  .spec-card.dark p { color: rgba(247,241,230,0.7); }
+
+  .spec-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .spec-tag {
+    font-size: 11.5px; letter-spacing: 0.5px; font-weight: 500; text-transform: uppercase;
+    border: 1px solid rgba(201,119,87,0.4); color: var(--terracotta);
+    padding: 6px 14px; border-radius: 20px;
+  }
+  .spec-card.dark .spec-tag { border-color: rgba(201,162,93,0.5); color: var(--gold-light); }
+
+  .spec-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(10,22,40,0.08); padding-top: 20px;
+  }
+  .spec-card.dark .spec-footer { border-top-color: rgba(247,241,230,0.12); }
+  .spec-link { font-size: 14px; color: var(--navy); font-weight: 500; }
+  .spec-card.dark .spec-link { color: var(--cream); }
+  .spec-arrow {
+    width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--terracotta);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s;
+  }
+  .spec-card.dark .spec-arrow { border-color: var(--gold); }
+  .spec-arrow svg { width: 15px; height: 15px; color: var(--terracotta); }
+  .spec-card.dark .spec-arrow svg { color: var(--gold-light); }
+  .spec-card:hover .spec-arrow { background: var(--terracotta); }
+  .spec-card:hover .spec-arrow svg { color: #fff; }
+  .spec-card.dark:hover .spec-arrow { background: var(--gold); }
+  .spec-card.dark:hover .spec-arrow svg { color: var(--navy); }
+
+  @media (max-width: 860px) { .spec-grid { grid-template-columns: 1fr; } }
+
+  /* Sticky bottom bar */
+  .sticky-cta {
+    position: fixed; bottom: 20px; left: 0; right: 0; z-index: 150;
+    display: flex; justify-content: center; gap: 2px; padding: 0 20px;
+  }
+  .sticky-cta a {
+    display: flex; align-items: center; gap: 10px; padding: 16px 30px;
+    font-size: 15px; font-weight: 500; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .sticky-cta .wa {
+    background: #1DA851; color: #fff; border-radius: 30px 0 0 30px;
+  }
+  .sticky-cta .call {
+    background: var(--navy); color: var(--cream); border-radius: 0 30px 30px 0;
+  }
+  .sticky-cta svg { width: 18px; height: 18px; }
+  @media (max-width: 500px) {
+    .sticky-cta a { padding: 14px 20px; font-size: 14px; }
+  }
+
+  /* extra bottom padding so sticky bar never covers footer content on short pages */
+  footer.mainfoot { padding-bottom: 90px; }
+</style>
+</head>
+<body>
+
+<div class="urgency-band">
+  <div class="container">
+    <div class="urgency-left">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      URGENCIAS 24HS
+    </div>
+    <div class="urgency-links">
+      <a href="https://wa.me/5493764758540" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.3A10 10 0 1 0 12 2z" opacity="0.3"/></svg>
+        Urgencia Penal — Detenciones
+      </a>
+      <a href="contacto.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/></svg>
+        Otras urgencias
+      </a>
+    </div>
+  </div>
+</div>
+
+<nav class="mainnav">
+  <div class="container">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="10" x2="50" y2="75" stroke="#C9A25D" stroke-width="3"/>
+        <line x1="20" y1="22" x2="80" y2="22" stroke="#C9A25D" stroke-width="3"/>
+        <circle cx="50" cy="10" r="4.5" fill="#C9A25D"/>
+        <path d="M20 22 L10 45 Q20 55 30 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+        <path d="M80 22 L70 45 Q80 55 90 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+        <line x1="35" y1="80" x2="65" y2="80" stroke="#C9A25D" stroke-width="3"/>
+        <line x1="50" y1="75" x2="50" y2="80" stroke="#C9A25D" stroke-width="3"/>
+      </svg>
+      SB y Asociados
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li class="has-mega active">
+        <a href="especialidades.html">Áreas de Práctica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="mega-menu">
+          <div class="container">
+            <a href="penal.html" class="mega-item">
+              <div class="mi-title">Penal <span class="badge">Urgencia 24hs</span></div>
+              <div class="mi-sub">Excarcelaciones, causas federales</div>
+            </a>
+            <a href="familia.html" class="mega-item">
+              <div class="mi-title">Derecho de Familia</div>
+              <div class="mi-sub">Alimentos, divorcios, sucesiones</div>
+            </a>
+            <a href="laboral.html" class="mega-item">
+              <div class="mi-title">Laboral</div>
+              <div class="mi-sub">Despidos, diferencias salariales</div>
+            </a>
+            <a href="laboral-accidentes.html" class="mega-item child">
+              <div class="mi-title">↳ Accidentes de trabajo</div>
+              <div class="mi-sub">Calculadora disponible</div>
+            </a>
+            <a href="civil.html" class="mega-item">
+              <div class="mi-title">Civil y Comercial</div>
+              <div class="mi-sub">Accidentes de tránsito, seguros</div>
+            </a>
+            <a href="previsional.html" class="mega-item">
+              <div class="mi-title">Previsional</div>
+              <div class="mi-sub">Jubilaciones, pensiones ANSES</div>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li><a href="novedades.html">Novedades</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.2 3.6a1 1 0 0 1-.27 1.05L7.6 9.9a12 12 0 0 0 6.5 6.5l1.57-1.56a1 1 0 0 1 1.05-.27l3.6 1.2a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C10.7 21 3 13.3 3 4V5z"/></svg>
+      3764758540
+    </div>
+  </div>
+</nav>
+
+<section class="spec-hero">
+  <div class="container">
+    <div class="spec-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> / Especialidades</div>
+      <h1>Especialidades del estudio</h1>
+      <p>Nueve frentes de trabajo, con el mismo criterio técnico y el mismo trato cercano en cada uno. Elegí el que se relacione con tu situación para saber más.</p>
+    </div>
+  </div>
+</section>
+
+<section class="spec-section">
+  <div class="container">
+    <div class="spec-grid">
+
+      <a href="familia.html" class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 20h6M12 4v16M5 8l7-4 7 4M5 8v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/></svg>
+        </div>
+        <h3>Alimentos, Divorcios &amp; Sucesiones</h3>
+        <p>Cuota alimentaria y su cobro, divorcios de mutuo acuerdo, régimen de comunicación con los hijos, y trámites sucesorios desde el primer paso.</p>
+        <div class="spec-tags">
+          <span class="spec-tag">Familia</span>
+          <span class="spec-tag">Alimentos</span>
+          <span class="spec-tag">Sucesiones</span>
+        </div>
+        <div class="spec-footer">
+          <span class="spec-link">Ver más</span>
+          <div class="spec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </a>
+
+      <a href="laboral-accidentes.html" class="spec-card dark">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        </div>
+        <h3>Accidentes de Trabajo &amp; ART</h3>
+        <p>Asistencia desde el primer día del accidente, impugnación de altas médicas sin incapacidad, y cálculo orientativo de indemnización con calculadora propia.</p>
+        <div class="spec-tags">
+          <span class="spec-tag">Laboral</span>
+          <span class="spec-tag">ART</span>
+          <span class="spec-tag">Calculadora</span>
+        </div>
+        <div class="spec-footer">
+          <span class="spec-link">Ver más</span>
+          <div class="spec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </a>
+
+      <a href="despidos.html" class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
+        </div>
+        <h3>Despidos &amp; Diferencias Salariales</h3>
+        <p>Liquidación de despido sin causa, presión para renunciar, categoría mal asignada, convenio no aplicado y horas extras no abonadas.</p>
+        <div class="spec-tags">
+          <span class="spec-tag">Laboral</span>
+          <span class="spec-tag">Despidos</span>
+          <span class="spec-tag">Salarios</span>
+        </div>
+        <div class="spec-footer">
+          <span class="spec-link">Ver más</span>
+          <div class="spec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </a>
+
+      <a href="civil.html" class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3>Seguros &amp; Accidentes de Tránsito</h3>
+        <p>Rechazos de cobertura injustificados, demoras en el pago del siniestro, y reclamos por daños tras un choque, con o sin denuncia previa.</p>
+        <div class="spec-tags">
+          <span class="spec-tag">Civil</span>
+          <span class="spec-tag">Seguros</span>
+          <span class="spec-tag">Tránsito</span>
+        </div>
+        <div class="spec-footer">
+          <span class="spec-link">Ver más</span>
+          <div class="spec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </a>
+
+      <a href="civil.html" class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 17h14M6 10l6-6 6 6M6 10v7M18 10v7M9 14v3M15 14v3"/></svg>
+        </div>
+        <h3>Planes de Ahorro &amp; Permutas</h3>
+        <p>Reclamos por actualización abusiva de cuotas, demoras en la entrega del vehículo, y revisión de documentación en operaciones de permuta.</p>
+        <div class="spec-tags">
+          <span class="spec-tag">Civil</span>
+          <span class="spec-tag">Consumidor</span>
+          <span class="spec-tag">Vehículos</span>
+        </div>
+        <div class="spec-footer">
+          <span class="spec-link">Ver más</span>
+          <div class="spec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </a>
+
+      <a href="penal.html" class="spec-card dark">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v2M4 21h16M6 21V9l6-4 6 4v12M9 21v-6h6v6"/></svg>
+        </div>
+        <h3>Excarcelaciones &amp; Urgencias Penales</h3>
+        <p>Gestión inmediata de excarcelaciones, control de legalidad de la detención, y asistencia técnica en tribunales, comisarías y dependencias — guardia 24hs.</p>
+        <div class="spec-tags">
+          <span class="spec-tag">Urgencia</span>
+          <span class="spec-tag">Penal</span>
+          <span class="spec-tag">Excarcelaciones</span>
+        </div>
+        <div class="spec-footer">
+          <span class="spec-link">Ver más</span>
+          <div class="spec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </a>
+
+      <a href="delitos-economicos.html" class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg>
+        </div>
+        <h3>Delitos Económicos &amp; Defensa en Juicio</h3>
+        <p>Estrategia técnica en causas por estafas y administración fraudulenta, litigación en juicio oral, y recursos ante el Superior Tribunal de Justicia de Misiones.</p>
+        <div class="spec-tags">
+          <span class="spec-tag">Penal</span>
+          <span class="spec-tag">Federal</span>
+          <span class="spec-tag">Recursos STJ</span>
+        </div>
+        <div class="spec-footer">
+          <span class="spec-link">Ver más</span>
+          <div class="spec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </a>
+
+      <a href="previsional.html" class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4"/></svg>
+        </div>
+        <h3>Jubilaciones &amp; Pensiones ANSES</h3>
+        <p>Reajuste de haberes, reclamos por demoras en el trámite jubilatorio, y gestión de pensiones no contributivas ante ANDIS y ANSES.</p>
+        <div class="spec-tags">
+          <span class="spec-tag">Previsional</span>
+          <span class="spec-tag">ANSES</span>
+          <span class="spec-tag">Jubilaciones</span>
+        </div>
+        <div class="spec-footer">
+          <span class="spec-link">Ver más</span>
+          <div class="spec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </a>
+
+      <a href="regimen-comunicacion.html" class="spec-card dark">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg>
+        </div>
+        <h3>Régimen de Comunicación &amp; Cuidado Personal</h3>
+        <p>Fijación judicial de días y horarios de contacto con los hijos, y causas de cuidado personal cuando no hay acuerdo entre las partes.</p>
+        <div class="spec-tags">
+          <span class="spec-tag">Urgencia</span>
+          <span class="spec-tag">Familia</span>
+          <span class="spec-tag">Hijos</span>
+        </div>
+        <div class="spec-footer">
+          <span class="spec-link">Ver más</span>
+          <div class="spec-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer class="mainfoot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand-block">
+        <div class="nav-brand">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="10" x2="50" y2="75" stroke="#C9A25D" stroke-width="3"/>
+            <line x1="20" y1="22" x2="80" y2="22" stroke="#C9A25D" stroke-width="3"/>
+            <circle cx="50" cy="10" r="4.5" fill="#C9A25D"/>
+            <path d="M20 22 L10 45 Q20 55 30 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+            <path d="M80 22 L70 45 Q80 55 90 45 Z" stroke="#C9A25D" stroke-width="2.5" fill="none"/>
+            <line x1="35" y1="80" x2="65" y2="80" stroke="#C9A25D" stroke-width="3"/>
+            <line x1="50" y1="75" x2="50" y2="80" stroke="#C9A25D" stroke-width="3"/>
+          </svg>
+          SB y Asociados
+        </div>
+        <p>Equipo de abogados del foro de Misiones, comprometido con vos en cada paso legal.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Áreas</h5>
+        <ul>
+          <li><a href="familia.html">Derecho de Familia</a></li>
+          <li><a href="laboral.html">Derecho Laboral</a></li>
+          <li><a href="civil.html">Civil y Comercial</a></li>
+          <li><a href="penal.html">Penal y Federal</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Estudio</h5>
+        <ul>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="tel:3764758540">3764758540</a></li>
+          <li><a href="#">Acevedo 3241, Posadas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="fb-brand">SB y Asociados</div>
+      <div class="fb-meta">Posadas, Misiones, Argentina — Sitio demo</div>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a href="https://wa.me/5493764758540" target="_blank" class="wa">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.3A10 10 0 1 0 12 2z" opacity="0.85"/></svg>
+    WhatsApp
+  </a>
+  <a href="tel:3764758540" class="call">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.2 3.6a1 1 0 0 1-.27 1.05L7.6 9.9a12 12 0 0 0 6.5 6.5l1.57-1.56a1 1 0 0 1 1.05-.27l3.6 1.2a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C10.7 21 3 13.3 3 4V5z"/></svg>
+    Llamar
+  </a>
+</div>
+
+</body>
+</html>
