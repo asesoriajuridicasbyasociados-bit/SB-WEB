@@ -123,7 +123,7 @@
     <div class="page-hero-inner">
       <div class="breadcrumb"><a href="index.html">Inicio</a> / Contacto</div>
       <h1>Hablemos de<br>tu <em>situación</em></h1>
-      <p>Escribinos y coordinamos una consulta. La primera charla para evaluar tu caso no tiene costo.</p>
+      <p>Escribinos y coordinamos una consulta. La primera charla para evaluar tu caso es sin compromiso.</p>
     </div>
   </div>
 </section>
@@ -154,18 +154,18 @@
 
     <div class="contact-form-card">
       <h3>Contanos tu caso</h3>
-      <form onsubmit="event.preventDefault(); alert('Demo: en el sitio final esto envía el mensaje al estudio.');">
+      <form id="contactForm" action="https://formspree.io/f/mbgjende" method="POST">
         <div class="form-group">
           <label>Nombre completo</label>
-          <input type="text" placeholder="Tu nombre" required>
+          <input type="text" name="nombre" placeholder="Tu nombre" required>
         </div>
         <div class="form-group">
           <label>Teléfono o WhatsApp</label>
-          <input type="text" placeholder="Tu número de contacto" required>
+          <input type="text" name="telefono" placeholder="Tu número de contacto" required>
         </div>
         <div class="form-group">
           <label>Área de consulta</label>
-          <select>
+          <select name="area">
             <option>Derecho Penal</option>
             <option>Derecho de Familia</option>
             <option>Derecho Laboral</option>
@@ -176,13 +176,54 @@
         </div>
         <div class="form-group">
           <label>Contanos brevemente tu situación</label>
-          <textarea placeholder="Escribí acá los detalles de tu consulta..."></textarea>
+          <textarea name="mensaje" placeholder="Escribí acá los detalles de tu consulta..."></textarea>
         </div>
+        <input type="hidden" name="_subject" value="Nueva consulta desde sb-abogados-misiones.com">
         <button type="submit" class="form-submit">Enviar consulta</button>
+        <p id="formStatus" style="margin-top:14px; font-size:14px; display:none;"></p>
       </form>
     </div>
   </div>
 </section>
+
+<script>
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const status = document.getElementById('formStatus');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          status.style.display = 'block';
+          status.style.color = '#C9A25D';
+          status.textContent = '¡Gracias por escribirnos! Te vamos a contactar a la brevedad.';
+          form.reset();
+        } else {
+          status.style.display = 'block';
+          status.style.color = '#C97757';
+          status.textContent = 'Hubo un problema al enviar. Por favor, escribinos por WhatsApp o llamanos.';
+        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar consulta';
+      }).catch(() => {
+        status.style.display = 'block';
+        status.style.color = '#C97757';
+        status.textContent = 'Hubo un problema al enviar. Por favor, escribinos por WhatsApp o llamanos.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar consulta';
+      });
+    });
+  }
+</script>
 
 <div class="map-band">
   <div class="map-placeholder">
@@ -255,7 +296,7 @@
     </div>
     <div class="foot-bottom">
       <div class="fb-brand">SB y Asociados</div>
-      <div class="fb-meta">Posadas, Misiones, Argentina — Sitio demo</div>
+      <div class="fb-meta">Posadas, Misiones, Argentina</div>
     </div>
   </div>
 </footer>
