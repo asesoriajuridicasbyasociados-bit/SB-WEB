@@ -36,12 +36,14 @@ No hay build step: son archivos HTML/CSS servidos tal cual.
 3. Publish directory: `.` (ya configurado en `netlify.toml`)
 4. Deploy
 
-## Conectar dominio propio
+## Conectar dominio propio (sb-abogados-misiones.com en Vercel)
 
-Una vez desplegado, avisame el dominio que vas a usar (por ejemplo `sbyasociados.com.ar`) y te guío paso a paso según dónde lo tengas registrado (NIC.ar u otro registrador). En términos generales:
+1. En el proyecto de Vercel: **Settings → Domains → Add** e ingresar `sb-abogados-misiones.com`.
+2. Vercel va a pedir agregar en el DNS del registrador del dominio:
+   - Registro **A** en `@` (raíz) apuntando a `76.76.21.21`
+   - Registro **CNAME** en `www` apuntando a `cname.vercel-dns.com`
+   (Vercel muestra los valores exactos en pantalla al agregar el dominio; pueden variar levemente, usar siempre lo que indique la UI en el momento.)
+3. Agregar también `www.sb-abogados-misiones.com` como dominio y configurar la redirección (por lo general `www` → raíz o viceversa, a elección).
+4. Esperar la propagación del DNS (minutos a un par de horas). Vercel emite el certificado SSL automáticamente una vez verificado.
 
-**Vercel:** Project → Settings → Domains → agregar el dominio. Vercel indica si hay que apuntar un registro `A` (dominio raíz) o `CNAME` (subdominio `www`) en tu proveedor de DNS.
-
-**Netlify:** Site settings → Domain management → Add a domain. Netlify ofrece usar sus DNS (Netlify DNS) o indicarte los registros para tu proveedor actual.
-
-Antes de eso, reemplazá `TU-DOMINIO` en `robots.txt` y `sitemap.xml` por el dominio definitivo.
+`robots.txt` y `sitemap.xml` ya están configurados con `https://www.sb-abogados-misiones.com`.
