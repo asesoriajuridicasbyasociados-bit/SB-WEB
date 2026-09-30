@@ -209,5 +209,16 @@ nav.mainnav { top: 40px; }
 }
 
 @media (max-width: 1150px) {
-  .side-rail { display: none; }
+  .side-rail {
+    top: auto; bottom: 18px; transform: none;
+    border-radius: 12px; border: 1px solid rgba(201,162,93,0.18);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  .rail-item { width: 48px; height: 48px; }
+  .rail-item svg { width: 19px; height: 19px; }
+  .rail-flyout { min-width: 210px; }
+}
+
+@media (max-width: 420px) {
+  .rail-item { width: 44px; height: 44px; }
 }
