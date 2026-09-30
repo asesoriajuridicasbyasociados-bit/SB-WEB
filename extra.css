@@ -159,3 +159,55 @@ nav.mainnav { top: 40px; }
 }
 .article-author .au-name { font-size: 15px; font-weight: 500; color: var(--navy); }
 .article-author .au-role { font-size: 13px; color: #8a8272; }
+
+/* ===== SIDE RAIL (menú lateral de acceso rápido) ===== */
+.side-rail {
+  position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+  z-index: 260; display: flex; flex-direction: column; gap: 2px;
+  background: var(--navy); border-radius: 0 12px 12px 0;
+  box-shadow: 6px 0 30px rgba(0,0,0,0.28);
+  padding: 10px 0;
+  border: 1px solid rgba(201,162,93,0.18); border-left: none;
+}
+.rail-item {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 58px; height: 58px; color: var(--gold-light); cursor: pointer;
+  transition: background 0.2s ease;
+}
+.rail-item:hover, .rail-item:focus-within { background: rgba(201,162,93,0.12); }
+.rail-item svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+.rail-flyout {
+  position: absolute; left: 100%; top: 50%; transform: translate(6px,-50%);
+  background: var(--navy); border: 1px solid rgba(201,162,93,0.22);
+  border-radius: 6px; padding: 10px 0; min-width: 240px;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  box-shadow: 14px 14px 34px rgba(0,0,0,0.32);
+  display: flex; flex-direction: column;
+}
+.rail-item:hover .rail-flyout,
+.rail-item:focus-within .rail-flyout {
+  opacity: 1; visibility: visible; transform: translate(12px,-50%); pointer-events: auto;
+}
+.rail-flyout-label {
+  font-size: 10.5px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--terracotta);
+  padding: 6px 20px 10px; font-weight: 600; white-space: nowrap;
+}
+.rail-flyout a {
+  padding: 10px 20px; color: var(--cream); font-size: 14.5px; white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease; display: block;
+}
+.rail-flyout a:hover { background: rgba(201,162,93,0.1); color: var(--gold-light); }
+.rail-flyout a em {
+  font-style: normal; font-size: 9.5px; letter-spacing: 0.5px; text-transform: uppercase;
+  background: var(--terracotta); color: #fff; padding: 2px 7px; border-radius: 10px; margin-left: 8px;
+}
+.rail-flyout-list .rail-flyout-all {
+  border-top: 1px solid rgba(247,241,230,0.1); margin-top: 6px; padding-top: 12px;
+  color: var(--gold-light); font-weight: 500; font-size: 13.5px;
+}
+
+@media (max-width: 1150px) {
+  .side-rail { display: none; }
+}
