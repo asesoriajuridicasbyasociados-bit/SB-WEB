@@ -199,37 +199,47 @@ nav.mainnav { top: 40px; }
   transition: background 0.15s ease, color 0.15s ease; display: block;
 }
 .rail-flyout a:hover { background: rgba(201,162,93,0.1); color: var(--gold-light); }
-.rail-flyout a em {
+.rail-flyout a em, .rail-acc summary em {
   font-style: normal; font-size: 9.5px; letter-spacing: 0.5px; text-transform: uppercase;
-  background: var(--terracotta); color: #fff; padding: 2px 7px; border-radius: 10px; margin-left: 8px;
+  background: var(--terracotta); color: #fff; padding: 2px 7px; border-radius: 10px; margin-left: 2px;
 }
 .rail-flyout-list .rail-flyout-all {
   border-top: 1px solid rgba(247,241,230,0.1); margin-top: 6px; padding-top: 12px;
   color: var(--gold-light); font-weight: 500; font-size: 13.5px;
 }
 
-/* Sub-ramas: al entrar a un tema con subtemas, se despliega otro panel al costado
-   para que se vea completo sin salir del menú lateral */
-.rail-sub-item { position: relative; }
-.rail-sub-item > a { padding-right: 30px; position: relative; }
-.rail-sub-item > a::after {
+/* Sub-ramas (acordeón nativo <details>/<summary>): en desktop se abren al pasar
+   el mouse (como un flyout al costado); en mobile cada una se despliega solo al
+   tocarla, y el atributo name agrupa todas las <details> de la página para que
+   al abrir una se cierren las demás automáticamente. */
+.rail-acc { position: relative; }
+.rail-acc > summary {
+  list-style: none; cursor: pointer; padding: 10px 30px 10px 20px; position: relative;
+  color: var(--cream); font-size: 14.5px; display: flex; align-items: center; gap: 8px;
+}
+.rail-acc > summary::-webkit-details-marker { display: none; }
+.rail-acc > summary::after {
   content: '›'; position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
-  color: var(--terracotta); font-size: 16px; line-height: 1;
+  color: var(--terracotta); font-size: 16px; line-height: 1; transition: transform 0.18s ease;
 }
-.rail-subflyout {
-  position: absolute; left: 100%; top: -8px; transform: translateX(4px);
-  background: var(--navy); border: 1px solid rgba(201,162,93,0.22);
-  border-radius: 6px; padding: 8px 0; min-width: 220px;
-  opacity: 0; visibility: hidden; pointer-events: none;
-  transition: opacity 0.16s ease, transform 0.16s ease;
-  box-shadow: 10px 10px 28px rgba(0,0,0,0.32);
-  display: flex; flex-direction: column;
+.rail-acc[open] > summary::after { transform: translateY(-50%) rotate(90deg); }
+.rail-acc:hover > summary, .rail-acc:focus-within > summary { background: rgba(201,162,93,0.08); }
+.rail-acc-body { display: flex; flex-direction: column; }
+.rail-acc-body a { font-size: 14px; padding: 9px 20px; color: rgba(247,241,230,0.78); display: block; }
+.rail-acc-body a:hover { background: rgba(201,162,93,0.1); color: var(--gold-light); }
+
+@media (min-width: 1151px) {
+  /* Nota: un <details> cerrado no se puede "mostrar" con CSS (display/opacity);
+     el navegador no lo pinta hasta que está realmente abierto. Por eso en
+     desktop también se abre con un clic (como un menú desplegable), y al
+     abrirse aparece como un panel al costado. */
+  .rail-acc[open] > .rail-acc-body {
+    position: absolute; left: 100%; top: -8px; transform: translateX(4px);
+    background: var(--navy); border: 1px solid rgba(201,162,93,0.22);
+    border-radius: 6px; padding: 8px 0; min-width: 230px;
+    box-shadow: 10px 10px 28px rgba(0,0,0,0.32);
+  }
 }
-.rail-sub-item:hover .rail-subflyout,
-.rail-sub-item:focus-within .rail-subflyout {
-  opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(10px);
-}
-.rail-subflyout a { font-size: 14px; padding: 9px 18px; }
 
 @media (max-width: 1150px) {
   .side-rail {
@@ -244,19 +254,16 @@ nav.mainnav { top: 40px; }
     max-height: calc(100vh - 140px); overflow-y: auto;
   }
 
-  /* En touch no hay hover en cascada: los subtemas se muestran siempre
-     en línea (recuadro fijo, no otro flyout flotante) para que se vea
-     todo con un solo toque, sin paneles superpuestos que queden trabados. */
-  .rail-sub-item > a::after { content: none; }
-  .rail-subflyout {
-    position: static; transform: none; opacity: 1; visibility: visible; pointer-events: auto;
-    box-shadow: none; border: none; border-radius: 0;
+  /* En touch, cada área se despliega solo al tocarla (acordeón nativo) y se
+     cierran las demás automáticamente; nada queda abierto de entrada ni se
+     superpone otro panel encima. */
+  .rail-acc-body {
     background: rgba(0,0,0,0.18);
     padding: 2px 0 2px 14px;
     margin: 0 0 4px;
   }
-  .rail-subflyout a { font-size: 13.5px; padding: 8px 20px; color: rgba(247,241,230,0.75); }
-  .rail-sub-item > a { font-weight: 500; }
+  .rail-acc-body a { font-size: 13.5px; padding: 8px 20px; color: rgba(247,241,230,0.75); }
+  .rail-acc > summary { font-weight: 500; }
 }
 
 @media (max-width: 420px) {

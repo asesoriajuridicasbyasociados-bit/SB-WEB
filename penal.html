@@ -126,28 +126,61 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M4 7h16M6 7l-4 8a5 5 0 0 0 8 0l-4-8zM18 7l-4 8a5 5 0 0 0 8 0l-4-8z"/></svg>
     <span class="rail-flyout rail-flyout-list">
       <span class="rail-flyout-label">Áreas de Práctica</span>
-      <span class="rail-sub-item">
-        <a href="penal.html">Penal <em>Urgencia 24hs</em></a>
-        <span class="rail-subflyout">
+      <details class="rail-acc" name="rail-areas-acc">
+        <summary>Penal <em>Urgencia 24hs</em></summary>
+        <div class="rail-acc-body">
           <a href="penal.html#excarcelaciones">Excarcelaciones</a>
+          <a href="penal.html#narcotrafico">Narcotráfico</a>
           <a href="delitos-economicos.html">Delitos Económicos</a>
-        </span>
-      </span>
-      <span class="rail-sub-item">
-        <a href="familia.html">Derecho de Familia</a>
-        <span class="rail-subflyout">
+          <a href="penal.html#defensa-en-juicio">Defensa en Juicio</a>
+          <a href="penal.html#recursos-ante-el-stj">Recursos ante el STJ</a>
+          <a href="penal.html#ciberdelitos">Ciberdelitos</a>
+        </div>
+      </details>
+      <details class="rail-acc" name="rail-areas-acc">
+        <summary>Derecho de Familia</summary>
+        <div class="rail-acc-body">
+          <a href="familia.html#cuota-alimentaria">Cuota Alimentaria</a>
+          <a href="familia.html#divorcio-de-mutuo-acuerdo">Divorcio de Mutuo Acuerdo</a>
           <a href="regimen-comunicacion.html">Régimen de Comunicación</a>
-        </span>
-      </span>
-      <span class="rail-sub-item">
-        <a href="laboral.html">Laboral</a>
-        <span class="rail-subflyout">
-          <a href="despidos.html">Despidos</a>
+          <a href="familia.html#cuidado-personal">Cuidado Personal</a>
+          <a href="familia.html#sucesiones">Sucesiones</a>
+          <a href="familia.html#violencia-familiar">Violencia Familiar</a>
+        </div>
+      </details>
+      <details class="rail-acc" name="rail-areas-acc">
+        <summary>Laboral</summary>
+        <div class="rail-acc-body">
           <a href="laboral-accidentes.html">Accidentes de trabajo</a>
-        </span>
-      </span>
-      <a href="civil.html">Civil y Comercial</a>
-      <a href="previsional.html">Previsional</a>
+          <a href="despidos.html">Despido sin causa</a>
+          <a href="laboral.html#presion-para-renunciar">Presión para renunciar</a>
+          <a href="laboral.html#diferencias-salariales">Diferencias salariales</a>
+          <a href="laboral.html#horas-extras">Horas extras</a>
+          <a href="laboral.html#enfermedades-profesionales">Enfermedades profesionales</a>
+        </div>
+      </details>
+      <details class="rail-acc" name="rail-areas-acc">
+        <summary>Civil y Comercial</summary>
+        <div class="rail-acc-body">
+          <a href="civil.html#accidentes-de-transito">Accidentes de Tránsito</a>
+          <a href="civil.html#rechazos-de-seguro">Rechazos de Seguro</a>
+          <a href="civil.html#planes-de-ahorro-0km">Planes de Ahorro 0KM</a>
+          <a href="civil.html#compraventa-de-vehiculos">Compraventa de Vehículos</a>
+          <a href="civil.html#contratos-y-reclamos-comerciales">Contratos y Reclamos Comerciales</a>
+          <a href="civil.html#cobro-de-deudas">Cobro de Deudas</a>
+        </div>
+      </details>
+      <details class="rail-acc" name="rail-areas-acc">
+        <summary>Previsional</summary>
+        <div class="rail-acc-body">
+          <a href="previsional.html#jubilacion-ordinaria">Jubilación Ordinaria</a>
+          <a href="previsional.html#reajuste-de-haberes">Reajuste de Haberes</a>
+          <a href="previsional.html#pensiones-no-contributivas">Pensiones No Contributivas</a>
+          <a href="previsional.html#amparo-por-mora">Amparo por Mora</a>
+          <a href="previsional.html#pension-por-fallecimiento">Pensión por Fallecimiento</a>
+          <a href="previsional.html#reconocimiento-de-servicios">Reconocimiento de Servicios</a>
+        </div>
+      </details>
       <a href="especialidades.html" class="rail-flyout-all">Ver todas las áreas →</a>
     </span>
   </div>
@@ -198,7 +231,7 @@
         <h4>Excarcelaciones</h4>
         <p>Gestión técnica de libertad inmediata ante los juzgados de la provincia.</p>
       </div>
-      <div class="subarea-card">
+      <div class="subarea-card" id="narcotrafico">
         <h4>Narcotráfico</h4>
         <p>Defensa técnica en causas por Ley 23.737 y narcomenudeo provincial.</p>
       </div>
@@ -206,15 +239,15 @@
         <h4>Delitos Económicos</h4>
         <p>Estrategia en estafas, administración fraudulenta y lavado de activos.</p>
       </div>
-      <div class="subarea-card">
+      <div class="subarea-card" id="defensa-en-juicio">
         <h4>Defensa en Juicio</h4>
         <p>Litigación ante Cámaras en lo Criminal y Correccional.</p>
       </div>
-      <div class="subarea-card">
+      <div class="subarea-card" id="recursos-ante-el-stj">
         <h4>Recursos ante el STJ</h4>
         <p>Casaciones y recursos extraordinarios ante el Superior Tribunal de Justicia de Misiones y la CSJN.</p>
       </div>
-      <div class="subarea-card">
+      <div class="subarea-card" id="ciberdelitos">
         <h4>Ciberdelitos</h4>
         <p>Peritajes informáticos y defensa en delitos digitales complejos.</p>
       </div>
