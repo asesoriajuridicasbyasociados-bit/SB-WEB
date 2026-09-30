@@ -239,7 +239,24 @@ nav.mainnav { top: 40px; }
   }
   .rail-item { width: 48px; height: 48px; }
   .rail-item svg { width: 19px; height: 19px; }
-  .rail-flyout { min-width: 210px; }
+  .rail-flyout {
+    min-width: 230px; max-width: calc(100vw - 88px);
+    max-height: calc(100vh - 140px); overflow-y: auto;
+  }
+
+  /* En touch no hay hover en cascada: los subtemas se muestran siempre
+     en línea (recuadro fijo, no otro flyout flotante) para que se vea
+     todo con un solo toque, sin paneles superpuestos que queden trabados. */
+  .rail-sub-item > a::after { content: none; }
+  .rail-subflyout {
+    position: static; transform: none; opacity: 1; visibility: visible; pointer-events: auto;
+    box-shadow: none; border: none; border-radius: 0;
+    background: rgba(0,0,0,0.18);
+    padding: 2px 0 2px 14px;
+    margin: 0 0 4px;
+  }
+  .rail-subflyout a { font-size: 13.5px; padding: 8px 20px; color: rgba(247,241,230,0.75); }
+  .rail-sub-item > a { font-weight: 500; }
 }
 
 @media (max-width: 420px) {
