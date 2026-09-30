@@ -8,15 +8,17 @@
 <link rel="stylesheet" href="extra.css">
 <style>
   .hero {
-    background: var(--navy); color: var(--cream);
+    background: var(--navy) url('img/oficina-hero.jpg') center 38% / cover no-repeat;
+    color: var(--cream);
     min-height: 88vh; display: flex; align-items: center;
     position: relative; overflow: hidden; padding-top: 40px;
   }
   .hero::before {
     content: ''; position: absolute; inset: 0;
     background:
+      linear-gradient(90deg, rgba(10,22,40,0.96) 0%, rgba(10,22,40,0.90) 32%, rgba(10,22,40,0.68) 58%, rgba(10,22,40,0.42) 100%),
       radial-gradient(ellipse 900px 600px at 88% 20%, rgba(201,162,93,0.14) 0%, transparent 60%),
-      radial-gradient(ellipse 700px 500px at 5% 100%, rgba(201,162,93,0.08) 0%, transparent 55%);
+      radial-gradient(ellipse 700px 500px at 5% 100%, rgba(201,162,93,0.10) 0%, transparent 55%);
   }
   .hero-scale {
     position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
@@ -31,6 +33,13 @@
   .hero p { font-size: 18px; color: rgba(247,241,230,0.78); max-width: 480px; margin-bottom: 40px; font-weight: 300; }
   .hero-buttons { display: flex; gap: 18px; flex-wrap: wrap; }
   @media (max-width: 900px) { .hero-scale { display: none; } }
+  @media (max-width: 760px) {
+    .hero::before {
+      background:
+        linear-gradient(180deg, rgba(10,22,40,0.88) 0%, rgba(10,22,40,0.80) 45%, rgba(10,22,40,0.92) 100%),
+        radial-gradient(ellipse 700px 500px at 5% 100%, rgba(201,162,93,0.10) 0%, transparent 55%);
+    }
+  }
 
   .areas { padding: 130px 0; background: var(--cream); }
   .areas-head { max-width: 620px; margin-bottom: 70px; }
@@ -169,15 +178,27 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M4 7h16M6 7l-4 8a5 5 0 0 0 8 0l-4-8zM18 7l-4 8a5 5 0 0 0 8 0l-4-8z"/></svg>
     <span class="rail-flyout rail-flyout-list">
       <span class="rail-flyout-label">Áreas de Práctica</span>
-      <a href="penal.html">Penal <em>Urgencia 24hs</em></a>
-      <a href="familia.html">Derecho de Familia</a>
-      <a href="laboral.html">Laboral</a>
-      <a href="laboral-accidentes.html">↳ Accidentes de trabajo</a>
+      <span class="rail-sub-item">
+        <a href="penal.html">Penal <em>Urgencia 24hs</em></a>
+        <span class="rail-subflyout">
+          <a href="delitos-economicos.html">Delitos Económicos</a>
+        </span>
+      </span>
+      <span class="rail-sub-item">
+        <a href="familia.html">Derecho de Familia</a>
+        <span class="rail-subflyout">
+          <a href="regimen-comunicacion.html">Régimen de Comunicación</a>
+        </span>
+      </span>
+      <span class="rail-sub-item">
+        <a href="laboral.html">Laboral</a>
+        <span class="rail-subflyout">
+          <a href="despidos.html">Despidos</a>
+          <a href="laboral-accidentes.html">Accidentes de trabajo</a>
+        </span>
+      </span>
       <a href="civil.html">Civil y Comercial</a>
       <a href="previsional.html">Previsional</a>
-      <a href="despidos.html">Despidos</a>
-      <a href="delitos-economicos.html">Delitos Económicos</a>
-      <a href="regimen-comunicacion.html">Régimen de Comunicación</a>
       <a href="especialidades.html" class="rail-flyout-all">Ver todas las áreas →</a>
     </span>
   </div>
