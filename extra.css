@@ -297,3 +297,16 @@ nav.mainnav { top: 40px; }
   .wa-float { width: 50px; height: 50px; right: 14px; bottom: 14px; }
   .wa-float svg { width: 26px; height: 26px; }
 }
+
+/* Selector de WhatsApp (Santiago / Jonatan) */
+.wa-modal { position: fixed; inset: 0; z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(10,22,40,0.72); backdrop-filter: blur(3px); }
+.wa-modal.open { display: flex; }
+.wa-box { position: relative; width: 100%; max-width: 380px; background: var(--cream); color: var(--ink); border-top: 4px solid var(--gold); padding: 34px 28px 28px; box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+.wa-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.15; color: var(--navy); margin: 4px 0 20px; font-weight: 600; }
+.wa-kicker { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--terracotta); font-weight: 500; margin: 0; }
+.wa-close { position: absolute; right: 12px; top: 8px; background: none; border: 0; font-size: 30px; line-height: 1; cursor: pointer; color: var(--navy); }
+.wa-opt { display: flex; align-items: center; gap: 14px; padding: 14px 16px; margin-top: 10px; background: var(--navy); color: var(--cream); text-decoration: none; border: 1px solid var(--navy); transition: background .2s, border-color .2s; }
+.wa-opt:hover { background: var(--navy-soft); border-color: var(--gold); }
+.wa-opt svg { color: var(--gold); flex-shrink: 0; }
+.wa-opt b { display: block; font-weight: 500; font-size: 16px; }
+.wa-opt small { display: block; font-size: 13px; color: var(--gold-light); letter-spacing: .06em; }
